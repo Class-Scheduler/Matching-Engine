@@ -22,6 +22,8 @@ command can be used.
 > dotnet run
 ```
 
+<img src="https://i.imgur.com/D6cTr2t.gif"></img>
+
  - Building
 
 You may want to build the program which will allow for extra build flags to be
@@ -31,6 +33,8 @@ incorperated. In order to do this run the following commands.
 > dotnet build
 ```
 
+<img src="https://i.imgur.com/dQNoX1H.gif"></img>
+
  - Cleaning
 
 I dont know why but if you felt like the directory wasnt clean enough you can 
@@ -39,5 +43,7 @@ use the following command to clean the directory contents before rebuilding.
 ```bash
 > dotnet clean
 ```
+
+<img src="https://i.imgur.com/iaAmCVr.gif"></img>
 
 ## Versions
