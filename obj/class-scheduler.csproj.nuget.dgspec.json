@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/digby/projects/class-scheduler/class-scheduler.csproj": {}
+    "/mnt/z/Projects/Class Scheduler/Matching-Engine/class-scheduler.csproj": {}
   },
   "projects": {
-    "/home/digby/projects/class-scheduler/class-scheduler.csproj": {
+    "/mnt/z/Projects/Class Scheduler/Matching-Engine/class-scheduler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/digby/projects/class-scheduler/class-scheduler.csproj",
+        "projectUniqueName": "/mnt/z/Projects/Class Scheduler/Matching-Engine/class-scheduler.csproj",
         "projectName": "class-scheduler",
-        "projectPath": "/home/digby/projects/class-scheduler/class-scheduler.csproj",
-        "packagesPath": "/home/digby/.nuget/packages/",
-        "outputPath": "/home/digby/projects/class-scheduler/obj/",
+        "projectPath": "/mnt/z/Projects/Class Scheduler/Matching-Engine/class-scheduler.csproj",
+        "packagesPath": "/home/esponius/.nuget/packages/",
+        "outputPath": "/mnt/z/Projects/Class Scheduler/Matching-Engine/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/digby/.nuget/NuGet/NuGet.Config"
+          "/home/esponius/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -37,6 +37,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -52,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/home/digby/.dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }
