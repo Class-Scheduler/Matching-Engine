@@ -1,0 +1,57 @@
+{
+    "units": [
+        {
+          "unitCode": "COMP1002",
+          "schedule": [
+              {
+                "day": "Monday",
+                "times": [
+                    {
+                      "startTime": 8,
+                      "endTime": 10
+                    },
+                    {
+                      "startTime": 10,
+                      "endTime": 12
+                    }
+                  ]
+              },
+              {
+                  "day": "Wednesday",
+                  "times": [
+                    {
+                        "startTime": 10,
+                        "endTime": 12
+                    },
+                    {
+                        "startTime": 2,
+                        "endTime": 4
+                    },
+                    {
+                        "startTime": 6,
+                        "endTime": 8
+                    }
+                  ]
+              }
+            ]
+        },
+        {
+          "unitCode": "COMP2008",
+          "schedule": [
+              {
+                "day": "Friday",
+                "times": [
+                    {
+                      "startTime": 8,
+                      "endTime": 10
+                    },
+                    {
+                      "startTime": 10,
+                      "endTime": 12
+                    }
+                  ]
+              }
+            ]
+        }
+      ]
+  }

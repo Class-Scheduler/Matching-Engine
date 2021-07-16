@@ -1,0 +1,29 @@
+{
+  "staff": [
+      {
+        "name": "AVCASDSD SDASDASD",
+        "id": "123456A",
+        "availability": [
+            {
+              "day": "Monday",
+              "times": [
+                  {
+                    "startTime": 8,
+                    "endTime": 10
+                  },
+                  {
+                    "startTime": 10,
+                    "endTime": 12
+                  }
+                ]
+            }
+          ],
+          "preferences": [
+              "COMP1002",
+              "ISYS2000",
+              "COMP2003",
+              "COMP1001"
+            ]
+      }
+    ]  
+}
