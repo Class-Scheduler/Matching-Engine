@@ -21,5 +21,17 @@ namespace Class_Scheduler.Models
             day = inDay;
             numTutors = inNumTutors;
         }
+
+        public override string ToString()
+        {
+            String timeslot = "";
+
+            timeslot += "Unit: " + unitCode;
+            timeslot += "Number of Tutors Required: " + numTutors;
+            timeslot += "\nDay: " + day;
+            timeslot += "\nClass Time: " + startTime.ToString() + " - " + endTime.ToString();
+
+            return timeslot;            
+        }
     }
 }
