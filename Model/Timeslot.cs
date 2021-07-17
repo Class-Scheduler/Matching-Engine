@@ -26,10 +26,10 @@ namespace Class_Scheduler.Models
         {
             String timeslot = "";
 
-            timeslot += "Unit: " + unitCode;
-            timeslot += "Number of Tutors Required: " + numTutors;
+            timeslot += "\n\nUnit: " + unitCode;
+            timeslot += "\nNumber of Tutors Required: " + numTutors;
             timeslot += "\nDay: " + day;
-            timeslot += "\nClass Time: " + startTime.ToString() + " - " + endTime.ToString();
+            timeslot += "\n\tClass Time: " + startTime.ToString() + " - " + endTime.ToString();
 
             return timeslot;            
         }
