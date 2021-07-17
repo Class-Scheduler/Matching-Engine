@@ -79,13 +79,13 @@ namespace Class_Scheduler.Controllers.FileIOControllers
                 //Out parameter is used to pass by reference - Parse Unit Schedule must set 
                 //Dictionary and List of Timeslots before returning.
                 Dictionary<String, List<int[]>> unitSchedule;
-                List<Timeslot> timeSlots;
+                List<Timeslot> timeslots;
 
                 //Handle the parsing.
-                parseUnitSchedule(schedule, unitCode, numTutors, out unitSchedule, out timeSlots);
+                parseUnitSchedule(schedule, unitCode, numTutors, out unitSchedule, out timeslots);
 
                 //Using the extracted information create a new unit.
-                Unit newUnit = new Unit(unitCode, numTutors, unitSchedule);
+                Unit newUnit = new Unit(unitCode, numTutors, unitSchedule, timeslots);
 
                 //Add the unit to the list of units.
                 unitsList.Add(newUnit);
