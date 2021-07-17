@@ -2,6 +2,7 @@
     "units": [
         {
           "unitCode": "COMP1002",
+          "numTutors": 2,
           "schedule": [
               {
                 "day": "Monday",
@@ -37,6 +38,7 @@
         },
         {
           "unitCode": "COMP2008",
+          "numTutors": 1,
           "schedule": [
               {
                 "day": "Friday",

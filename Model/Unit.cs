@@ -17,10 +17,41 @@ namespace Class_Scheduler.Models
             schedule = inSchedule;
         }
 
-        //Constructor is used for staff to represent what classes they want.
-        public Unit(String inCode)
+        public override string ToString()
         {
-            code = inCode;
+            String unit = "";
+
+            unit += "Unit Code: " + code;
+            unit += "\nNumber of Tutors: " + numTutors.ToString();
+            unit += "\nUnit Schedule:";
+
+            foreach (KeyValuePair<String, List<int[]>> entry in schedule)
+            {
+                //Fetch the Key.
+                String dayName = entry.Key;
+
+                //Add the Day Name to the output string.
+                unit += "\n\tDay: " + dayName;
+
+                unit += "\n\tTimes:";
+
+                //Fetch the Value.
+                List<int[]> dayTimes = entry.Value;
+
+                //Iterate over dayTimes.
+                foreach (int[] time in dayTimes)
+                {
+                    //Extract the start and end time.
+                    int startTime = time[0];
+                    int endTime = time[1];
+
+                    unit += "\n\t\t" + startTime.ToString() + " - " + endTime.ToString();
+                }
+
+                unit += "\n";
+            }
+
+            return unit;
         }
     }
 }
