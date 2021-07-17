@@ -10,14 +10,14 @@ namespace Class_Scheduler.Models
 
         public Dictionary<String, List<int[]>> schedule;
 
-        public List<Timeslot> timeSlotList;
+        public List<Timeslot> timeslotList;
 
-        public Unit(String inCode, int inNumTutors, Dictionary<String, List<int[]>> inSchedule, List<Timeslot> inTimeSlotList)
+        public Unit(String inCode, int inNumTutors, Dictionary<String, List<int[]>> inSchedule, List<Timeslot> inTimeslotList)
         {
             code = inCode;
             numTutors = inNumTutors;
             schedule = inSchedule;
-            timeSlotList = inTimeSlotList;
+            timeslotList = inTimeslotList;
         }
 
         public override string ToString()
@@ -52,6 +52,16 @@ namespace Class_Scheduler.Models
                 }
 
                 unit += "\n";
+            }
+
+            //Add the list of timeslots.
+            unit += "\nFull Timeslots: ";
+            
+            //Iterate over every timeslot.
+            foreach (Timeslot currentTimeslot in timeslotList)
+            {
+                //Fetch the string representation of the currentTimeslot.
+                unit += currentTimeslot.ToString();
             }
 
             return unit;
