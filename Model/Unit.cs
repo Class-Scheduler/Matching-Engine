@@ -10,11 +10,14 @@ namespace Class_Scheduler.Models
 
         public Dictionary<String, List<int[]>> schedule;
 
-        public Unit(String inCode, int inNumTutors, Dictionary<String, List<int[]>> inSchedule)
+        public List<Timeslot> timeSlotList;
+
+        public Unit(String inCode, int inNumTutors, Dictionary<String, List<int[]>> inSchedule, List<Timeslot> inTimeSlotList)
         {
             code = inCode;
             numTutors = inNumTutors;
             schedule = inSchedule;
+            timeSlotList = inTimeSlotList;
         }
 
         public override string ToString()
