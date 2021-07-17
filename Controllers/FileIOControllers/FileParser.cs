@@ -76,7 +76,13 @@ namespace Class_Scheduler.Controllers.FileIOControllers
                 //Fetch the schedule array.
                 JArray schedule = (JArray) (currentUnit["schedule"]);
 
-                Dictionary<String, List<int[]>> unitSchedule = parseUnitSchedule(schedule);
+                //Out parameter is used to pass by reference - Parse Unit Schedule must set 
+                //Dictionary and List of Timeslots before returning.
+                Dictionary<String, List<int[]>> unitSchedule;
+                List<Timeslot> timeSlots;
+
+                //Handle the parsing.
+                parseUnitSchedule(schedule, out unitSchedule, out timeSlots);
 
                 //Using the extracted information create a new unit.
                 Unit newUnit = new Unit(unitCode, numTutors, unitSchedule);
@@ -190,10 +196,13 @@ namespace Class_Scheduler.Controllers.FileIOControllers
             return staffPreferences;
         }
 
-        private Dictionary<String, List<int[]>> parseUnitSchedule(JArray schedule)
+        private void parseUnitSchedule(JArray schedule, out Dictionary<String, List<int[]>> unitSchedule, out List<Timeslot> timeSlots)
         {
             //Create the schedule to represent a singular unit and relevant time slots.
-            Dictionary<String, List<int[]>> unitSchedule = new Dictionary<String, List<int[]>>();
+            unitSchedule = new Dictionary<String, List<int[]>>();
+
+            //Construct timeSlots to represent all timeslots for the one unit.
+            timeSlots = new List<Timeslot>();
 
             //Iterate over every day in the schedule.
             foreach (JObject currentDay in schedule)
@@ -224,8 +233,6 @@ namespace Class_Scheduler.Controllers.FileIOControllers
                 //Add the day and day times as KeyValue pairs in the schedule dictionary.
                 unitSchedule.Add(day, dayTimes);
             }
-
-            return unitSchedule;
         }
     }
 }
