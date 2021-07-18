@@ -13,7 +13,8 @@ namespace Class_Scheduler.Tests.ParseTests
         public void TestStaffOutput()
         {
             //Replace this filename with what file you want to test.
-            List<String> fileContents = FileReading.readFile("tests/staff.json");
+            Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
+            List<String> fileContents = FileReading.readFile(@"../../../tests/staff.json");
 
             FileParser fileParser = new FileParser();
 

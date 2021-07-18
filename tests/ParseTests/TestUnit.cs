@@ -13,7 +13,7 @@ namespace Class_Scheduler.Tests.ParseTests
         public void TestUnitOutput()
         {
             //Replace this filename with what file you want to test.
-            List<String> fileContents = FileReading.readFile("tests/units.json");
+            List<String> fileContents = FileReading.readFile(@"../../../tests/units.json");
 
             FileParser fileParser = new FileParser();
 
@@ -26,7 +26,7 @@ namespace Class_Scheduler.Tests.ParseTests
 
                 foreach (Unit currentUnit in unitList)
                 {
-                    Console.WriteLine(currentUnit.ToString() + "\n");
+                    System.Diagnostics.Debug.WriteLine(currentUnit.ToString() + "\n");
                 }
             }
             else
