@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.5"/>
   </ItemGroup>
 </Project>
