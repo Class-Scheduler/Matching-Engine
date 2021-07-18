@@ -1,3 +1,4 @@
+using System;
 using Class_Scheduler.Models;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
