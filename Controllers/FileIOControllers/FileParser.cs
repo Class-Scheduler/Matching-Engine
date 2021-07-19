@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Class_Scheduler.Controllers.FileIOControllers
 {
-    public class FileParser 
+    public class FileParser
     {
         public List<Staff> parseStaffData(List<String> fileContents)
         {
@@ -35,7 +35,7 @@ namespace Class_Scheduler.Controllers.FileIOControllers
 
                 //Create the Dictionary to represent this staff members availability.
                 //Call the parseStaffAvailability to parse staffAvailability JArray.
-                Dictionary<String, List<int[]>> availability = parseStaffAvailability(staffAvailability);
+                List<TimePeriod> availability = parseStaffAvailability(staffAvailability);
 
                 //Extract Preferences JArray.
                 JArray staffPreferences = (JArray) (staffMember["preferences"]);
@@ -50,7 +50,7 @@ namespace Class_Scheduler.Controllers.FileIOControllers
                 staffList.Add(newStaff);
             }
 
-            return staffList;  
+            return staffList;
         }
 
         public List<Unit> parseUnitData(List<String> fileContents)
@@ -76,16 +76,10 @@ namespace Class_Scheduler.Controllers.FileIOControllers
                 //Fetch the schedule array.
                 JArray schedule = (JArray) (currentUnit["schedule"]);
 
-                //Out parameter is used to pass by reference - Parse Unit Schedule must set 
-                //Dictionary and List of Timeslots before returning.
-                Dictionary<String, List<int[]>> unitSchedule;
-                List<Timeslot> timeslots;
-
-                //Handle the parsing.
-                parseUnitSchedule(schedule, unitCode, numTutors, out unitSchedule, out timeslots);
+                List<Class> classes = parseUnitSchedule(schedule, unitCode, numTutors);
 
                 //Using the extracted information create a new unit.
-                Unit newUnit = new Unit(unitCode, numTutors, unitSchedule, timeslots);
+                Unit newUnit = new Unit(unitCode, numTutors, classes);
 
                 //Add the unit to the list of units.
                 unitsList.Add(newUnit);
@@ -108,7 +102,7 @@ namespace Class_Scheduler.Controllers.FileIOControllers
             {
                 dataType = "unitData";
             }
-            else 
+            else
             {
                 dataType = "Invalid";
             }
@@ -124,7 +118,7 @@ namespace Class_Scheduler.Controllers.FileIOControllers
             {
                 fileContentsAsJson = JObject.Parse(fileContents);
             }
-            catch (JsonReaderException jsonReadException)
+            catch (JsonReaderException)
             {
                 Console.WriteLine(fileContents + "\nIs  not in a valid JSON Format.");
             }
@@ -144,16 +138,13 @@ namespace Class_Scheduler.Controllers.FileIOControllers
             return concattedString;
         }
 
-        private Dictionary<String, List<int[]>> parseStaffAvailability(JArray staffAvailability)
+        private List<TimePeriod> parseStaffAvailability(JArray staffAvailability)
         {
-            Dictionary<String, List<int[]>> availability = new Dictionary<String, List<int[]>>();
+            List<TimePeriod> availability = new List<TimePeriod>();
 
             //Iterate over staffAvailability to get each day.
             foreach (JObject currentDay in staffAvailability)
             {
-                //Create the list to represent the array of times for this currentDay.
-                List<int[]> currentDayTimes = new List<int[]>();
-
                 //Extract the day.
                 String day = (String) (currentDay["day"]);
 
@@ -169,15 +160,9 @@ namespace Class_Scheduler.Controllers.FileIOControllers
                     //Extract the endTime.
                     int endTime = (int) currentTime["endTime"];
 
-                    //Create a new array for both times.
-                    int[] newTimes = new int[2] { startTime, endTime };
-
                     //Store the newly created array in the times list.
-                    currentDayTimes.Add(newTimes);
+                    availability.Add(new TimePeriod(startTime,endTime,day));
                 }
-
-                //Add currentDayTimes and day as a KeyValue pair to the dictionary.
-                availability.Add(day, currentDayTimes);
             }
 
             return availability;
@@ -196,46 +181,25 @@ namespace Class_Scheduler.Controllers.FileIOControllers
             return staffPreferences;
         }
 
-        private void parseUnitSchedule(JArray schedule, String unitCode, int numTutors, out Dictionary<String, List<int[]>> unitSchedule, out List<Timeslot> timeslots)
+        private List<Class> parseUnitSchedule(JArray schedule, String unitCode, int numTutors)
         {
-            //Create the schedule to represent a singular unit and relevant time slots.
-            unitSchedule = new Dictionary<String, List<int[]>>();
+            List<Class> timeslots = new List<Class>();
 
-            //Construct timeSlots to represent all timeslots for the one unit.
-            timeslots = new List<Timeslot>();
-
-            //Iterate over every day in the schedule.
             foreach (JObject currentDay in schedule)
             {
-                //Used to represent the times the unit runs during a specific day.
-                List<int[]> dayTimes = new List<int[]>();
-
-                //Fetch the day name.
                 String day = (String) (currentDay["day"]);
 
-                //Fetch the times array.
                 JArray times = (JArray) (currentDay["times"]);
 
-                //Iterate over every time.
                 foreach (JObject currentTime in times)
                 {
-                    //Fetch the start and end time.
                     int startTime = (int) (currentTime["startTime"]);
                     int endTime = (int) (currentTime["endTime"]);
 
-                    //Store the start and end time in a new array.
-                    int[] fetchedTimes = new int[2] { startTime, endTime };
-
-                    //Add the fetchedTimes to the dayTimes list.
-                    dayTimes.Add(fetchedTimes);
-
-                    //Construct the Timeslot object and add it to the timeslots list.
-                    timeslots.Add(new Timeslot(startTime, endTime, unitCode, day, numTutors));
+                    timeslots.Add(new Class(new TimePeriod(startTime, endTime, day), unitCode, numTutors));
                 }
-
-                //Add the day and day times as KeyValue pairs in the schedule dictionary.
-                unitSchedule.Add(day, dayTimes);
             }
+            return timeslots;
         }
     }
 }

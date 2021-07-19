@@ -4,20 +4,17 @@ using System.Collections.Generic;
 namespace Class_Scheduler.Models
 {
     public class Unit {
-        public String code { get; set; }
+        public String code { get; }
 
-        public int numTutors { get; set; }
+        public int numTutors { get; }
 
-        public Dictionary<String, List<int[]>> schedule;
+        public List<Class> classList;
 
-        public List<Timeslot> timeslotList;
-
-        public Unit(String inCode, int inNumTutors, Dictionary<String, List<int[]>> inSchedule, List<Timeslot> inTimeslotList)
+        public Unit(String inCode, int inNumTutors, List<Class> classList)
         {
-            code = inCode;
-            numTutors = inNumTutors;
-            schedule = inSchedule;
-            timeslotList = inTimeslotList;
+            this.code = code;
+            this.numTutors = numTutors;
+            this.classList = classList;
         }
 
         public override string ToString()
@@ -26,42 +23,11 @@ namespace Class_Scheduler.Models
 
             unit += "Unit Code: " + code;
             unit += "\nNumber of Tutors: " + numTutors.ToString();
-            unit += "\nUnit Schedule:";
+            unit += "\nUnit Classes:";
 
-            foreach (KeyValuePair<String, List<int[]>> entry in schedule)
+            foreach (Class entry in classList)
             {
-                //Fetch the Key.
-                String dayName = entry.Key;
-
-                //Add the Day Name to the output string.
-                unit += "\n\tDay: " + dayName;
-
-                unit += "\n\tTimes:";
-
-                //Fetch the Value.
-                List<int[]> dayTimes = entry.Value;
-
-                //Iterate over dayTimes.
-                foreach (int[] time in dayTimes)
-                {
-                    //Extract the start and end time.
-                    int startTime = time[0];
-                    int endTime = time[1];
-
-                    unit += "\n\t\t" + startTime.ToString() + " - " + endTime.ToString();
-                }
-
-                unit += "\n";
-            }
-
-            //Add the list of timeslots.
-            unit += "\nFull Timeslots: ";
-            
-            //Iterate over every timeslot.
-            foreach (Timeslot currentTimeslot in timeslotList)
-            {
-                //Fetch the string representation of the currentTimeslot.
-                unit += currentTimeslot.ToString();
+                unit += entry.ToString() + "\n";
             }
 
             return unit;
