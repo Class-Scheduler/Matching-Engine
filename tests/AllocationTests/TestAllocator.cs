@@ -10,13 +10,13 @@ namespace Class_Scheduler.Tests.ParseTests
     public class TestAllocator
     {
         public TestContext TestContext { get; set; }
+
         [TestMethod]
         public void Test()
         {
-            string staffFilePath = (string) TestContext.Properties["staffFile"];
-            string unitsFilePath = (string) TestContext.Properties["unitsFile"];
+            String staffFilePath = (String) TestContext.Properties["staffFile"];
+            String unitsFilePath = (String) TestContext.Properties["unitsFile"];
             Console.WriteLine(AppDomain.CurrentDomain.BaseDirectory);
-
         }
     }
 }

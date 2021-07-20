@@ -7,7 +7,7 @@ namespace class_scheduler
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(String[] args)
         {
             List<String> staffFile = FileReading.readFile("tests/staff.json");
             List<String> unitsFile = FileReading.readFile("tests/units.json");
@@ -19,8 +19,7 @@ namespace class_scheduler
 
             BasicAllocator basicAllocator = new BasicAllocator();
 
-
-            basicAllocator.Allocate(units,staff);
+            basicAllocator.Allocate(units, staff);
         }
     }
 }

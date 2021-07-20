@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-
 namespace Class_Scheduler.Models
 {
     public class Connection
@@ -8,10 +7,10 @@ namespace Class_Scheduler.Models
 
         public List<Staff> staffList { get; set; }
 
-        public Connection(Class classTime)
+        public Connection(Class inClassTime)
         {
-            this.staffList = new List<Staff>();
-            this.classInfo = classTime;
+            staffList = new List<Staff>();
+            classInfo = inClassTime;
         }
     }
 }

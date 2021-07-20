@@ -5,28 +5,32 @@ namespace Class_Scheduler.Models
     public class TimePeriod
     {
         public int startTime { get; }
+
         public int endTime { get; }
-        public string day { get; }
-        public TimePeriod ( int startTime, int endTime, string day)
+
+        public String day { get; }
+
+        public TimePeriod (int inStartTime, int inEndTime, String inDay)
         {
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.day = day;
+            startTime = inStartTime;
+            endTime = inEndTime;
+            day = inDay;
         }
 
-        public bool contains(TimePeriod t) {
-            return t.startTime >= this.startTime && t.endTime <= this.endTime;
+        public bool contains(TimePeriod timePeriodToCheck) {
+            return timePeriodToCheck.startTime >= startTime && timePeriodToCheck.endTime <= endTime;
         }
 
-        public override string ToString()
+        public override String ToString()
         {
-            String s = "Start: ";
-            s += startTime;
-            s += "\nEnd: ";
-            s += endTime;
-            s += "\nDay: ";
-            s += day;
-            return s;
+            String timePeriod = "Start: ";
+            timePeriod += startTime;
+            timePeriod += "\nEnd: ";
+            timePeriod += endTime;
+            timePeriod += "\nDay: ";
+            timePeriod += day;
+
+            return timePeriod;
         }
     }
 }
