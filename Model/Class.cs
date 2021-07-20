@@ -31,7 +31,7 @@ namespace Class_Scheduler.Models
 
             timeslot += "\n\nUnit: " + unitCode;
             timeslot += "\nNumber of Tutors Required: " + numTutors;
-            timeslot += datetime.ToString();
+            timeslot += "\n" + datetime.ToString();
 
             return timeslot;
         }
