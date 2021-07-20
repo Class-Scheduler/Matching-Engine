@@ -8,16 +8,16 @@ namespace Class_Scheduler.Controllers.FileIOControllers
         public static List<String> readFile(String fileName)
         {
             List<String> fileContents = null;
-            
-            try 
+
+            try
             {
                 fileContents = new List<String>(File.ReadAllLines(fileName));
             }
-            catch (ArgumentException argumentException)
+            catch (ArgumentException)
             {
                 //Will add custom exceptions here later.
             }
-            catch (PathTooLongException invalidPathException)
+            catch (PathTooLongException)
             {
                 //Will add custom exceptions here later.
             }
