@@ -5,8 +5,11 @@ namespace Class_Scheduler.Models
     public class TimePeriod
     {
         public int startTime { get; }
+
         public int endTime { get; }
+
         public String day { get; }
+
         public TimePeriod (int inStartTime, int inEndTime, String inDay)
         {
             startTime = inStartTime;
@@ -14,8 +17,8 @@ namespace Class_Scheduler.Models
             day = inDay;
         }
 
-        public bool contains(TimePeriod t) {
-            return t.startTime >= this.startTime && t.endTime <= this.endTime;
+        public bool contains(TimePeriod timePeriodToCheck) {
+            return timePeriodToCheck.startTime >= startTime && timePeriodToCheck.endTime <= endTime;
         }
 
         public override String ToString()
@@ -27,7 +30,7 @@ namespace Class_Scheduler.Models
             timePeriod += "\nDay: ";
             timePeriod += day;
 
-            return s;
+            return timePeriod;
         }
     }
 }

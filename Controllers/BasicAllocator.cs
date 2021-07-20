@@ -61,7 +61,7 @@ public class BasicAllocator
         {
             foreach (Class currentClass in currentUnit.classList)
             {
-                connections.Add(new Connection(Y));
+                connections.Add(new Connection(currentClass));
             }
         }
 
