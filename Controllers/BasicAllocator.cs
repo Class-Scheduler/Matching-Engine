@@ -1,15 +1,15 @@
-using Class_Scheduler.Models;
-using System.Diagnostics;
-using System.Collections.Generic;
 using System;
+using System.Diagnostics;
+using Class_Scheduler.Models;
+using System.Collections.Generic;
 using Class_Scheduler.Controllers.FileIOControllers;
 
 public class BasicAllocator
 {
-
     public BasicAllocator()
     {
     }
+
     public List<Unit> Allocate(List<Unit> units, List<Staff> staff)
     {
         List<Connection> connections = getClassConnections(units, staff);
@@ -45,8 +45,8 @@ public class BasicAllocator
                 }
 
             }
-            if (complete)
-                break;
+
+            if (complete) break;
         }
         return units;
     }
@@ -56,25 +56,24 @@ public class BasicAllocator
         List<Connection> connections = new List<Connection>();
         List<Class> classes = new List<Class>();
 
-
-        units.ForEach(X =>
+        foreach (Unit currentUnit in units)
         {
-            X.classList.ForEach(Y =>
+            foreach (Class currentClass in currentUnit.classList)
             {
                 connections.Add(new Connection(Y));
-            });
-        });
+            }
+        }
 
-        foreach (Connection X in connections)
+        foreach (Connection currentConnection in connections)
         {
-            TimePeriod classTime = X.classInfo.datetime;
+            TimePeriod classTime = currentConnection.classInfo.datetime;
             foreach (Staff staffMember in staffList)
             {
                 // check if they can teach and if they can add them to the connections list
                 if (staffMember.canTeach(classTime))
                 {
-                    Console.WriteLine("{0}", X.ToString());
-                    X.staffList.Add(staffMember);
+                    Console.WriteLine("{0}", currentConnection.ToString());
+                    currentConnection.staffList.Add(staffMember);
                 }
             }
         }
