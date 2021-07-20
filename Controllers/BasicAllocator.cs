@@ -26,22 +26,23 @@ public class BasicAllocator
             Console.WriteLine("Removed:");
             bool complete = true;
 
-            foreach (Connection c in connections)
+            foreach (Connection currentConnection in connections)
             {
-                if (c.staffList.Count == 0)
+                if (currentConnection.staffList.Count == 0)
                 {
-                    Console.WriteLine(String.Format("Allocation Complete:\n {0}", c.classInfo.ToString()));
+                    Console.WriteLine(String.Format("Allocation Complete:\n {0}", currentConnection.classInfo.ToString()));
                     continue;
                 }
+
                 complete = false;
-                Class currentClass = c.classInfo;
-                Staff staffMember = c.staffList[0];
+                Class currentClass = currentConnection.classInfo;
+                Staff staffMember = currentConnection.staffList[0];
 
                 // allocate this staff member to the class
                 if (currentClass.needsStaff())
                 {
                     currentClass.allocatedTutors.Add(staffMember);
-                    c.staffList.Remove(staffMember);
+                    currentConnection.staffList.Remove(staffMember);
                 }
 
             }

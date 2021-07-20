@@ -10,14 +10,14 @@ namespace Class_Scheduler.Models
 
         public List<Class> classList;
 
-        public Unit(String inCode, int inNumTutors, List<Class> classList)
+        public Unit(String inCode, int inNumTutors, List<Class> inClassList)
         {
-            this.code = code;
-            this.numTutors = numTutors;
-            this.classList = classList;
+            code = inCode;
+            numTutors = inNumTutors;
+            classList = inClassList;
         }
 
-        public override string ToString()
+        public override String ToString()
         {
             String unit = "";
 

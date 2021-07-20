@@ -15,24 +15,27 @@ namespace Class_Scheduler.Models
 
         public List<String> preferences { get; }
 
-        public Staff(String name, String id, List<TimePeriod> availability, List<String> preferences)
+        public Staff(String inName, String inID, List<TimePeriod> inAvailability, List<String> inPreferences)
         {
-            this.name = name;
-            this.id = id;
-            this.availability = availability;
-            this.preferences = preferences;
+            name = inName;
+            id = inID;
+            availability = inAvailability;
+            preferences = inPreferences;
         }
+
         public bool canTeach(TimePeriod period) {
-            foreach (var a in availability)
+            foreach (TimePeriod currentTimePeriod in availability)
             {
-                if (a.contains(period))
+                if (currentTimePeriod.contains(period))
                 {
                     return true;
                 }
             }
+            
             return false;
         }
-        public override string ToString()
+
+        public override String ToString()
         {
             String staff = "";
 
